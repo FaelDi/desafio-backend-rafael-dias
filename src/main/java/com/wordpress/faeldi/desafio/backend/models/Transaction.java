@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,11 +15,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Transfer")
+@Table(name = "transactions")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Transfer {
+public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,12 +27,6 @@ public class Transfer {
 
     @Column(nullable = false)
     private BigDecimal value;
-
-    @Column(nullable = false)
-    private Integer payer;
-
-    @Column(nullable = false)
-    private Integer payee;
 
     @Column(nullable = false)
     private boolean authorized;
@@ -44,4 +39,10 @@ public class Transfer {
 
     @Column(nullable = false)
     private LocalDateTime processedAt;
+
+    @ManyToOne
+    private User payer;
+
+    @ManyToOne
+    private User payee;
 }

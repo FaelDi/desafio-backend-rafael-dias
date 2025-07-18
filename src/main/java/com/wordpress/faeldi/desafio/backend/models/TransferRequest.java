@@ -15,8 +15,8 @@ public class TransferRequest {
     private BigDecimal value;
 
     @NotNull
-    private Integer payer;
+    private Long payer;
 
     @NotNull
-    private Integer payee;
+    private Long payee;
 }
